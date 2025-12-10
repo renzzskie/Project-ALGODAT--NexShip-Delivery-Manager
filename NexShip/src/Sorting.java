@@ -1,0 +1,59 @@
+public class Sorting {
+
+    public static void displaySortedByDestination(Queue queue) {
+        if (queue.isEmpty()) {
+            System.out.println("[INFO] Tidak ada data untuk disortir.");
+            return;
+        }
+        System.out.println("\n--- PENGELOMPOKAN PAKET PER KOTA TUJUAN ---");
+        
+        // Salin data Queue ke Temporary List agar Queue asli tidak rusak
+        MyLinkedList tempList = new MyLinkedList();
+        ListNode sourceNode = queue.getList().getHead();
+        
+        while(sourceNode != null) {
+            tempList.addLast(sourceNode.data); 
+            sourceNode = sourceNode.next;
+        }
+
+        ListNode head = tempList.getHead();
+        if (head == null) return;
+
+        // Bubble Sort
+        boolean swapped;
+        do {
+            swapped = false;
+            ListNode current = head;
+
+            while (current.next != null) {
+                Paket p1 = (Paket) current.data;
+                Paket p2 = (Paket) current.next.data;
+
+                if (p1.tujuan.compareToIgnoreCase(p2.tujuan) > 0) {
+                    Object temp = current.data;
+                    current.data = current.next.data;
+                    current.next.data = temp;
+                    swapped = true;
+                }
+                current = current.next;
+            }
+        } while (swapped);
+
+        ListNode sortedNode = tempList.getHead();
+        String currentCity = "";
+        
+        while (sortedNode != null) {
+            Paket p = (Paket) sortedNode.data;
+            
+            if (!p.tujuan.equalsIgnoreCase(currentCity)) {
+                System.out.println("\n[ KOTA: " + p.tujuan.toUpperCase() + " ]");
+                currentCity = p.tujuan;
+            }
+            
+            System.out.printf("   >> Resi: %s | Pengirim: %s | Est: %d Jam\n", 
+                p.noResi, p.pengirim, p.estimasiWaktu);
+                
+            sortedNode = sortedNode.next;
+        }
+    }
+}

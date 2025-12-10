@@ -1,19 +1,29 @@
 public class Paket {
-    int nomorResi;
+    String noResi;
     String pengirim;
     String penerima;
+    String asal;
     String tujuan;
     String status;
+    String rute;
+    int estimasiBiaya;
+    int estimasiWaktu;
 
-    public Paket(int nomorResi, String pengirim, String penerima, String tujuan) {
-        this.nomorResi = nomorResi;
+    public Paket(String resi, String pengirim, String penerima, String asal, String tujuan, int waktu, String rute) {
+        this.noResi = resi;
         this.pengirim = pengirim;
         this.penerima = penerima;
+        this.asal = asal;
         this.tujuan = tujuan;
-        this.status = "Di Pusat";
+        this.estimasiWaktu = waktu;
+        this.rute = rute;
+        this.status = "Di Gudang Pusat";
+        this.estimasiBiaya = waktu * 1500; 
     }
 
+    @Override
     public String toString() {
-        return "[Resi: " + nomorResi + " | Tujuan: " + tujuan + " | Status: " + status + "]";
+        return String.format("RESI: %s | %s -> %s | Est: %d Jam | Ket: %s", 
+            noResi, asal, tujuan, estimasiWaktu, status);
     }
 }
