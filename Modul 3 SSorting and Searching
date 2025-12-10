@@ -1,0 +1,53 @@
+public class Paket {
+    String noResi;
+    String pengirim;
+    String penerima;
+    String asal;
+    String tujuan;
+    String status;
+    String rute;
+    int estimasiBiaya;
+    int estimasiWaktu;
+
+    public Paket(String resi, String pengirim, String penerima, String asal, String tujuan, int waktu, String rute) {
+        this.noResi = resi;
+        this.pengirim = pengirim;
+        this.penerima = penerima;
+        this.asal = asal;
+        this.tujuan = tujuan;
+        this.estimasiWaktu = waktu;
+        this.rute = rute;
+        this.status = "Di Gudang Pusat";
+        this.estimasiBiaya = waktu * 1500; 
+    }
+
+    @Override
+    public String toString() {
+        return String.format("RESI: %s | %s -> %s | Est: %d Jam | Ket: %s", 
+            noResi, asal, tujuan, estimasiWaktu, status);
+    }
+}
+
+// ini juga (bakal ada di main buat file lengkap)
+static void menuLihatSortedLinkedList() {
+    // ... code setup ...
+    boolean swapped;
+    do {
+        swapped = false;
+        ListNode current = head;
+        while (current.next != null) {
+            Paket p1 = (Paket) current.data;
+            Paket p2 = (Paket) current.next.data;
+
+            // Sorting berdasarkan Nama Kota Tujuan (A-Z)
+            if (p1.tujuan.compareToIgnoreCase(p2.tujuan) > 0) {
+                Object temp = current.data;
+                current.data = current.next.data;
+                current.next.data = temp;
+                swapped = true;
+            }
+            current = current.next;
+        }
+    } while (swapped);
+    // ... code print ...
+}
