@@ -35,6 +35,7 @@ public class Queue {
             Paket p = (Paket) current.data;
             if(p.noResi.equalsIgnoreCase(noResi)) {
                 System.out.println(p.toString()); 
+                System.out.println("Rute: " + p.rute);
                 found = true; 
                 break;
             }
