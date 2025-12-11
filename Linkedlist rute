@@ -1,0 +1,26 @@
+public class RuteLinkedList {
+    NodeRute head;
+    NodeRute tail;
+
+    public void tambahTitik(String namaTitik) {
+        NodeRute nodeBaru = new NodeRute(namaTitik);
+        if (head == null) {
+            head = nodeBaru;
+            tail = nodeBaru;
+        } else {
+            tail.next = nodeBaru;
+            tail = nodeBaru;
+        }
+    }
+
+    public void cetakRute() {
+        NodeRute current = head;
+        System.out.print("Rute Pengiriman: ");
+        while (current != null) {
+            System.out.print(current.namaTitik);
+            if (current.next != null) System.out.print(" -> ");
+            current = current.next;
+        }
+        System.out.println(" -> SAMPAI");
+    }
+}
