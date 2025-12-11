@@ -66,5 +66,8 @@ public class Main {
         queuePaket.enqueue(p);
         logAktivitas.push("Input Paket " + resi);
         System.out.println("[SUKSES] Paket masuk antrean.");
+        System.out.println(p.toString());
+        System.out.println("Rute: " + p.rute);
+        System.out.println("Biaya: Rp " + p.estimasiBiaya);
     }
 }
